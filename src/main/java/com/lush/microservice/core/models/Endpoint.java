@@ -1,8 +1,7 @@
-package com.lush.core.models;
+package com.lush.microservice.core.models;
 
+import com.lush.microservice.core.models.EndpointDto.Info;
 import java.util.List;
-
-import com.lush.core.models.EndpointDto.Info;
 
 /**
  * Endpoint

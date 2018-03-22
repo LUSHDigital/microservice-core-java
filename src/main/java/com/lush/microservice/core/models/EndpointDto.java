@@ -1,6 +1,6 @@
-package com.lush.core.models;
+package com.lush.microservice.core.models;
 
-import com.lush.core.enums.HttpMethod;
+import com.lush.microservice.core.enums.HttpMethod;
 
 /**
  * EndpointDto

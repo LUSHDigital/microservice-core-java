@@ -1,7 +1,6 @@
-package com.lush.core.models;
+package com.lush.microservice.core.models;
 
-import com.lush.core.enums.ResponseStatus;
-import org.springframework.http.HttpStatus;
+import com.lush.microservice.core.enums.ResponseStatus;
 import org.springframework.stereotype.Component;
 
 /**

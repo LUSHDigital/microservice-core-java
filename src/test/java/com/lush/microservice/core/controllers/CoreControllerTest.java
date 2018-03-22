@@ -1,4 +1,4 @@
-package com.lush.core.controllers;
+package com.lush.microservice.core.controllers;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.lush.microservice.core.enums.ResponseStatus;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class CoreControllerTest {
         .andDo(print())
         .andExpect(header().string("Content-Type", "application/json;charset=UTF-8"))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.status", is("ok")));
+        .andExpect(jsonPath("$.status", is("OK")));
   }
 
   /**

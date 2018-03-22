@@ -1,4 +1,4 @@
-package com.lush.core.enums;
+package com.lush.microservice.core.enums;
 
 /**
  * HttpMethod
@@ -24,5 +24,9 @@ public enum HttpMethod {
    */
   HttpMethod(String method) {
     this.method = method;
+  }
+
+  public String getMethod() {
+    return method;
   }
 }

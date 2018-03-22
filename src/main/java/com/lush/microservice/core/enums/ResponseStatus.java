@@ -1,4 +1,4 @@
-package com.lush.core.enums;
+package com.lush.microservice.core.enums;
 
 /**
  * ResponseStatus
@@ -24,5 +24,9 @@ public enum ResponseStatus {
    */
   ResponseStatus(String status) {
     this.status = status;
+  }
+
+  public String getStatus() {
+    return status;
   }
 }

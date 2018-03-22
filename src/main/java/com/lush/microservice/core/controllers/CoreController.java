@@ -1,13 +1,13 @@
-package com.lush.core.controllers;
+package com.lush.microservice.core.controllers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.lush.core.enums.HttpMethod;
-import com.lush.core.enums.ResponseStatus;
-import com.lush.core.models.EndpointDto;
-import com.lush.core.models.Endpoint;
-import com.lush.core.models.Response;
+import com.lush.microservice.core.enums.HttpMethod;
+import com.lush.microservice.core.enums.ResponseStatus;
+import com.lush.microservice.core.models.EndpointDto;
+import com.lush.microservice.core.models.Endpoint;
+import com.lush.microservice.core.models.Response;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
