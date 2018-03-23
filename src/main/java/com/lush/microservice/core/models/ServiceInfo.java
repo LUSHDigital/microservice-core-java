@@ -1,17 +1,47 @@
 package com.lush.microservice.core.models;
 
-import com.lush.microservice.core.models.EndpointDto.Info;
+import com.lush.microservice.core.enums.HttpMethodType;
 import java.util.List;
 
 /**
- * Endpoint
+ * ServiceInfo
  *
  * Response object to hold endpoint information.
  *
  * @author Is
  * @author Jelly
  */
-public class Endpoint {
+public class ServiceInfo {
+
+  public static class Endpoint {
+
+    /**
+     * Endpoint uri.
+     */
+    private String uri;
+
+    /**
+     * Http protocol method.
+     */
+    private HttpMethodType method;
+
+    // Getter and Setter
+    public String getUri() {
+      return uri;
+    }
+
+    public void setUri(String uri) {
+      this.uri = uri;
+    }
+
+    public HttpMethodType getMethod() {
+      return method;
+    }
+
+    public void setMethod(HttpMethodType method) {
+      this.method = method;
+    }
+  }
 
   /**
    * Service name of microservice.
@@ -36,7 +66,7 @@ public class Endpoint {
   /**
    * Endpoint list of microservice.
    */
-  private List<Info> endpoints;
+  private List<Endpoint> endpoints;
 
   // Getter and Setter.
   public String getService_name() {
@@ -71,11 +101,11 @@ public class Endpoint {
     this.service_version = service_version;
   }
 
-  public List<Info> getEndpoints() {
+  public List<Endpoint> getEndpoints() {
     return endpoints;
   }
 
-  public void setEndpoints(List<Info> endpoints) {
+  public void setEndpoints(List<Endpoint> endpoints) {
     this.endpoints = endpoints;
   }
 }

@@ -46,7 +46,7 @@ public class SwaggerConfig {
   public Docket postsApi() {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("com.lush"))
+        .apis(RequestHandlerSelectors.basePackage("com.lush.microservice"))
         .paths(PathSelectors.any())
         .build()
         .apiInfo(apiInfo());

@@ -5,9 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.lush.microservice.core.enums.HttpMethodType;
 import com.lush.microservice.core.enums.ResponseStatusType;
-import com.lush.microservice.core.models.EndpointDto;
-import com.lush.microservice.core.models.Endpoint;
+
 import com.lush.microservice.core.models.Response;
+import com.lush.microservice.core.models.ServiceInfo;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class CoreController {
   /**
    * Define RestTemplate for get response information of uri.
    */
-  private RestTemplate restTemplate;
+  protected RestTemplate restTemplate;
 
   /**
    * Define Gson for json convert and parse.
@@ -179,7 +179,7 @@ public class CoreController {
     String method = "";
     String pattern = "";
     String regex = "[\"\\[\\]]";
-    List<EndpointDto.Info> endpointList = new ArrayList<EndpointDto.Info>();
+    List<ServiceInfo.Endpoint> endpoints = new ArrayList<>();
 
     for (int idx=0; idx < methods.size(); idx++) {
       method = methods.get(idx).toString().replaceAll(regex, "");
@@ -189,20 +189,20 @@ public class CoreController {
         continue;
       }
 
-      EndpointDto.Info endpoint = new EndpointDto.Info();
+      ServiceInfo.Endpoint endpoint = new ServiceInfo.Endpoint();
       endpoint.setMethod(HttpMethodType.valueOf(method));
       endpoint.setUri(pattern);
-      endpointList.add(endpoint);
+      endpoints.add(endpoint);
     }
 
     // Set endpoints data.
-    Endpoint endpoints = new Endpoint();
-    endpoints.setService_name(serviceName);
-    endpoints.setService_type(serviceType);
-    endpoints.setService_scope(serviceScope);
-    endpoints.setService_version(serviceVersion);
-    endpoints.setEndpoints(endpointList);
+    ServiceInfo serviceInfo = new ServiceInfo();
+    serviceInfo.setService_name(serviceName);
+    serviceInfo.setService_type(serviceType);
+    serviceInfo.setService_scope(serviceScope);
+    serviceInfo.setService_version(serviceVersion);
+    serviceInfo.setEndpoints(endpoints);
 
-    return new ResponseEntity(endpoints, HttpStatus.OK);
+    return new ResponseEntity(serviceInfo, HttpStatus.OK);
   }
 }
