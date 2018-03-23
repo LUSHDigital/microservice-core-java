@@ -8,7 +8,7 @@ package com.lush.microservice.core.enums;
  * @author Is
  * @author Jelly
  */
-public enum HttpMethod {
+public enum HttpMethodType {
 
   GET("get"), POST("post"), PUT("put"), PATCH("patch"), DELETE("delete");
 
@@ -22,7 +22,7 @@ public enum HttpMethod {
    *
    * @param method
    */
-  HttpMethod(String method) {
+  HttpMethodType(String method) {
     this.method = method;
   }
 

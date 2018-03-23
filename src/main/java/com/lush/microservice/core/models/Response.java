@@ -1,6 +1,7 @@
 package com.lush.microservice.core.models;
 
-import com.lush.microservice.core.enums.ResponseStatus;
+import com.lush.microservice.core.enums.ResponseStatusType;
+import com.lush.microservice.core.enums.ResponseStatusType;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +18,7 @@ public class Response {
   /**
    * Response status.
    */
-  private ResponseStatus status;
+  private ResponseStatusType status;
 
   /**
    * Response message.
@@ -33,7 +34,7 @@ public class Response {
    * Description : Default constructor.
    */
   public Response () {
-    this.status = ResponseStatus.OK;
+    this.status = ResponseStatusType.OK;
     this.message = "";
     this.data = "";
   }
@@ -43,7 +44,7 @@ public class Response {
    *
    * @param status
    */
-  public Response(ResponseStatus status) {
+  public Response(ResponseStatusType status) {
     this.status = status;
     this.message = "";
     this.data = "";
@@ -55,18 +56,18 @@ public class Response {
    * @param status
    * @param message
    */
-  public Response(ResponseStatus status, String message) {
+  public Response(ResponseStatusType status, String message) {
     this.status = status;
     this.message = message;
     this.data = "";
   }
 
   // Getter and Setter
-  public ResponseStatus getStatus() {
+  public ResponseStatusType getStatus() {
     return status;
   }
 
-  public void setStatus(ResponseStatus status) {
+  public void setStatus(ResponseStatusType status) {
     this.status = status;
   }
 

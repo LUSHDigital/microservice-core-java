@@ -8,7 +8,7 @@ package com.lush.microservice.core.enums;
  * @author Is
  * @author Jelly
  */
-public enum ResponseStatus {
+public enum ResponseStatusType {
   OK("ok")
   , FAIL("fail");
 
@@ -22,7 +22,7 @@ public enum ResponseStatus {
    *
    * @param status
    */
-  ResponseStatus(String status) {
+  ResponseStatusType(String status) {
     this.status = status;
   }
 

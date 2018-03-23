@@ -3,8 +3,8 @@ package com.lush.microservice.core.controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.lush.microservice.core.enums.HttpMethod;
-import com.lush.microservice.core.enums.ResponseStatus;
+import com.lush.microservice.core.enums.HttpMethodType;
+import com.lush.microservice.core.enums.ResponseStatusType;
 import com.lush.microservice.core.models.EndpointDto;
 import com.lush.microservice.core.models.Endpoint;
 import com.lush.microservice.core.models.Response;
@@ -118,7 +118,7 @@ public class CoreController {
 
     // Check status of application.
     if (!"UP".equals(appStatus)) {
-      response.setStatus(ResponseStatus.FAIL);
+      response.setStatus(ResponseStatusType.FAIL);
       response.setMessage("AppStatus is fail");
     }
 
@@ -129,7 +129,7 @@ public class CoreController {
       String dbStatus = temp.get("status").getAsString();
 
       if (!"UP".equals(dbStatus)) {
-        response.setStatus(ResponseStatus.FAIL);
+        response.setStatus(ResponseStatusType.FAIL);
 
         if (!"".equals(response.getMessage())) {
           response.setMessage(response.getMessage() + " and database status is fail" );
@@ -146,7 +146,7 @@ public class CoreController {
       String redisStatus = temp.get("status").getAsString();
 
       if (!"UP".equals(redisStatus)) {
-        response.setStatus(ResponseStatus.FAIL);
+        response.setStatus(ResponseStatusType.FAIL);
 
         if (!"".equals(response.getMessage())) {
           response.setMessage(response.getMessage() + " and redis status is fail" );
@@ -190,7 +190,7 @@ public class CoreController {
       }
 
       EndpointDto.Info endpoint = new EndpointDto.Info();
-      endpoint.setMethod(HttpMethod.valueOf(method));
+      endpoint.setMethod(HttpMethodType.valueOf(method));
       endpoint.setUri(pattern);
       endpointList.add(endpoint);
     }

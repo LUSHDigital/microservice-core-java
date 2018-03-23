@@ -1,6 +1,7 @@
 package com.lush.microservice.core.models;
 
-import com.lush.microservice.core.enums.HttpMethod;
+import com.lush.microservice.core.enums.HttpMethodType;
+import com.lush.microservice.core.enums.HttpMethodType;
 
 /**
  * EndpointDto
@@ -22,7 +23,7 @@ public class EndpointDto {
     /**
      * Http protocol method.
      */
-    private HttpMethod method;
+    private HttpMethodType method;
 
     // Getter and Setter
     public String getUri() {
@@ -33,11 +34,11 @@ public class EndpointDto {
       this.uri = uri;
     }
 
-    public HttpMethod getMethod() {
+    public HttpMethodType getMethod() {
       return method;
     }
 
-    public void setMethod(HttpMethod method) {
+    public void setMethod(HttpMethodType method) {
       this.method = method;
     }
   }
