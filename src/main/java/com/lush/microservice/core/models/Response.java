@@ -2,6 +2,7 @@ package com.lush.microservice.core.models;
 
 import com.lush.microservice.core.enums.ResponseStatusType;
 import com.lush.microservice.core.enums.ResponseStatusType;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,7 +19,12 @@ public class Response {
   /**
    * Response status.
    */
-  private ResponseStatusType status;
+  private String status;
+
+  /**
+   * Response code.
+   */
+  private Integer code;
 
   /**
    * Response message.
@@ -31,44 +37,58 @@ public class Response {
   private Object data;
 
   /**
-   * Description : Default constructor.
+   * Default constructor.
    */
   public Response () {
-    this.status = ResponseStatusType.OK;
-    this.message = "";
+    this.status = ResponseStatusType.OK.getStatus();
+    this.code = HttpStatus.OK.value();
+    this.message = "success";
     this.data = "";
   }
 
   /**
-   * Description : Constructor.
+   * Constructor.
    *
    * @param status
-   */
-  public Response(ResponseStatusType status) {
-    this.status = status;
-    this.message = "";
-    this.data = "";
-  }
-
-  /**
-   * Description : Constructor.
-   *
-   * @param status
+   * @param code
    * @param message
    */
-  public Response(ResponseStatusType status, String message) {
+  public Response(String status, Integer code, String message) {
     this.status = status;
+    this.code = code;
     this.message = message;
     this.data = "";
   }
 
-  // Getter and Setter
-  public ResponseStatusType getStatus() {
+  /**
+   * Constructor.
+   *
+   * @param status
+   * @param code
+   * @param message
+   * @param data
+   */
+  public Response(String status, Integer code, String message, Object data) {
+    this.status = status;
+    this.code = code;
+    this.message = message;
+    this.data = data;
+  }
+
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(ResponseStatusType status) {
+  public void setStatus(String status) {
     this.status = status;
+  }
+
+  public Integer getCode() {
+    return code;
+  }
+
+  public void setCode(Integer code) {
+    this.code = code;
   }
 
   public String getMessage() {

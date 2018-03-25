@@ -9,19 +9,13 @@ package com.lush.microservice.core.enums;
  * @author Jelly
  */
 public enum ResponseStatusType {
-  OK("ok")
-  , FAIL("fail");
+  OK("ok"), FAIL("fail");
 
   /**
-   * Define status of response.
+   *  Response http status.
    */
   private String status;
 
-  /**
-   * Constructor
-   *
-   * @param status
-   */
   ResponseStatusType(String status) {
     this.status = status;
   }

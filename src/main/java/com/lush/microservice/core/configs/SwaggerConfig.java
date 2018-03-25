@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  *
  * Class for setting information on swagger2.
  * With this setting, you can check the swagger setting information with apI.
- * {@link domain/v2/api-docs}
+ * {@link {domain}/v2/api-docs}
  *
  * @author Is
  * @author Jelly
