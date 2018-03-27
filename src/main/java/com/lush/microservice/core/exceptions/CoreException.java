@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Core Exception(Common)
+ * When exceptions occur, receive exception information.
+ * (The controller will return it to the response)
  *
  * @author Jelly
  * @author Is
@@ -66,14 +68,23 @@ public class CoreException extends RuntimeException {
     return coreException;
   }
 
+  /**
+   * Get Exception status
+   */
   public String getStatus() {
     return status;
   }
 
+  /**
+   * Get Exception code
+   */
   public Integer getCode() {
     return code;
   }
 
+  /**
+   * Get Exception message
+   */
   @Override
   public String getMessage() {
     return message;
