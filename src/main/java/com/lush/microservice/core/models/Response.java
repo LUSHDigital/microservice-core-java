@@ -18,11 +18,13 @@ public class Response {
 
   /**
    * Response status.
+   * only "ok" or "fail"
    */
   private String status;
 
   /**
    * Response code.
+   * use HttpStatus value
    */
   private Integer code;
 
@@ -75,34 +77,58 @@ public class Response {
     this.data = data;
   }
 
+  /**
+   * Get status
+   */
   public String getStatus() {
     return status;
   }
 
+  /**
+   * Set status
+   */
   public void setStatus(String status) {
     this.status = status;
   }
 
+  /**
+   * Get code
+   */
   public Integer getCode() {
     return code;
   }
 
+  /**
+   * Set code
+   */
   public void setCode(Integer code) {
     this.code = code;
   }
-
+  
+  /**
+   * Get message
+   */
   public String getMessage() {
     return message;
   }
 
+  /**
+   * Set message
+   */
   public void setMessage(String message) {
     this.message = message;
   }
 
+  /**
+   * Get Object Data
+   */
   public Object getData() {
     return data;
   }
 
+  /**
+   * Set Objcet Data
+   */
   public void setData(Object data) {
     this.data = data;
   }
