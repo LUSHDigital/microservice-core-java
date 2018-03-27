@@ -22,19 +22,30 @@ public class Endpoint {
    */
   private HttpMethod method;
 
-  // Getter and Setter
+  /**
+   *  Get Uri
+   */ 
   public String getUri() {
     return uri;
   }
-
+  
+  /**
+   *  Set Uri
+   */
   public void setUri(String uri) {
     this.uri = uri;
   }
 
+  /**
+   *  Get Method
+   */
   public HttpMethod getMethod() {
     return method;
   }
 
+  /**
+   *  Set Method
+   */
   public void setMethod(HttpMethod method) {
     this.method = method;
   }
