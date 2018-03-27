@@ -7,7 +7,7 @@ import com.lush.microservice.core.enums.ResponseStatusType;
 import com.lush.microservice.core.models.Endpoint;
 import com.lush.microservice.core.models.Response;
 import com.lush.microservice.core.models.ServiceInfo;
-import com.lush.microservice.core.utils.Utils;
+import com.lush.microservice.core.utils.HttpUtil;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -86,7 +86,7 @@ public class CoreController {
    * Define utils.
    */
   @Autowired
-  private Utils utils;
+  private HttpUtil httpUtil;
 
   /**
    * Set to RestTemplate Bean.
@@ -203,6 +203,6 @@ public class CoreController {
     serviceInfo.setService_version(serviceVersion);
     serviceInfo.setEndpoints(endpoints);
 
-    return new ResponseEntity(serviceInfo, utils.getResponseHeaders(), HttpStatus.OK);
+    return new ResponseEntity(serviceInfo, httpUtil.getResponseHeaders(), HttpStatus.OK);
   }
 }

@@ -11,17 +11,17 @@ public enum ExceptionType {
   /**
    * Not Found Data Exception
    */
-  NotFoundData(204, "no data found"),
+  NOT_FOUND_DATA(204, "no data found"),
 
   /**
    * Duplicated Data Exception
    */
-  DuplicatedData(412, "already duplicated data"),
+  DUPLICATED_DATA(412, "already duplicated data"),
 
   /**
    * Don't allow File type Exception
    */
-  FileTypeException(415, "don't allow File type");
+  FILE_TYPE_EXCEPTION(415, "don't allow File type");
 
   /**
    * Exception Code

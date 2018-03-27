@@ -5,13 +5,13 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 
 /**
- * Class for application utils.
+ * Class for http protocol util.
  *
  * @author Is
  * @author Jelly
  */
 @Component
-public class Utils {
+public class HttpUtil {
 
   /**
    * Get http headers.
