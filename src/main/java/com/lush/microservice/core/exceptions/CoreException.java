@@ -24,7 +24,7 @@ public class CoreException extends RuntimeException {
   /**
    * Exceptoin status
    */
-  private final String status;
+  private final ResponseStatusType status;
 
   /**
    * Exceptoin code
@@ -40,7 +40,7 @@ public class CoreException extends RuntimeException {
    * The default creator. (using default code and message)
    */
   public CoreException() {
-    this.status = ResponseStatusType.FAIL.getStatus();
+    this.status = ResponseStatusType.FAIL;
     this.code = HttpStatus.INTERNAL_SERVER_ERROR.value();
     this.message = "Internal server exception";
   }
@@ -52,7 +52,7 @@ public class CoreException extends RuntimeException {
    * @param handlerMessage
    */
   public CoreException(Integer code, String handlerMessage) {
-    this.status = ResponseStatusType.FAIL.getStatus();
+    this.status = ResponseStatusType.FAIL;
     this.code = code;
     this.message = handlerMessage;
   }
@@ -71,7 +71,7 @@ public class CoreException extends RuntimeException {
   /**
    * Get Exception status
    */
-  public String getStatus() {
+  public ResponseStatusType getStatus() {
     return status;
   }
 

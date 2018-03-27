@@ -20,7 +20,7 @@ public class Response {
    * Response status.
    * use ResponseStatusType
    */
-  private String status;
+  private ResponseStatusType status;
 
   /**
    * Response code.
@@ -42,7 +42,7 @@ public class Response {
    * Default constructor.
    */
   public Response () {
-    this.status = ResponseStatusType.OK.getStatus();
+    this.status = ResponseStatusType.OK;
     this.code = HttpStatus.OK.value();
     this.message = "success";
     this.data = "";
@@ -55,7 +55,7 @@ public class Response {
    * @param code
    * @param message
    */
-  public Response(String status, Integer code, String message) {
+  public Response(ResponseStatusType status, Integer code, String message) {
     this.status = status;
     this.code = code;
     this.message = message;
@@ -70,7 +70,7 @@ public class Response {
    * @param message
    * @param data
    */
-  public Response(String status, Integer code, String message, Object data) {
+  public Response(ResponseStatusType status, Integer code, String message, Object data) {
     this.status = status;
     this.code = code;
     this.message = message;
@@ -80,14 +80,14 @@ public class Response {
   /**
    * Get status
    */
-  public String getStatus() {
+  public ResponseStatusType getStatus() {
     return status;
   }
 
   /**
    * Set status
    */
-  public void setStatus(String status) {
+  public void setStatus(ResponseStatusType status) {
     this.status = status;
   }
 

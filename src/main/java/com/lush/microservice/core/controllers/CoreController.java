@@ -125,7 +125,7 @@ public class CoreController {
 
     // Check status of application.
     if (!"UP".equals(appStatus)) {
-      response.setStatus(ResponseStatusType.FAIL.getStatus());
+      response.setStatus(ResponseStatusType.FAIL);
       response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
       response.setMessage("AppStatus is fail");
     }
@@ -137,7 +137,7 @@ public class CoreController {
       String dbStatus = temp.get("status").getAsString();
 
       if (!"UP".equals(dbStatus)) {
-        response.setStatus(ResponseStatusType.FAIL.getStatus());
+        response.setStatus(ResponseStatusType.FAIL);
         response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         response.setMessage("Database status is fail");
       }
@@ -150,7 +150,7 @@ public class CoreController {
       String redisStatus = temp.get("status").getAsString();
 
       if (!"UP".equals(redisStatus)) {
-        response.setStatus(ResponseStatusType.FAIL.getStatus());
+        response.setStatus(ResponseStatusType.FAIL);
         response.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         response.setMessage("Redis status is fail");
       }
