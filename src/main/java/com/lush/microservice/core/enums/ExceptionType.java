@@ -2,6 +2,7 @@ package com.lush.microservice.core.enums;
 
 /**
  * Exception Handler
+ * Manage exception messages in common.
  *
  * @author Jelly
  * @author Is
@@ -44,10 +45,16 @@ public enum ExceptionType {
     this.massage = massage;
   }
 
+  /**
+   * Get Exception code
+   */
   public int getCode() {
     return code;
   }
 
+  /**
+   * Get Exception message
+   */
   public String getMassage() {
     return massage;
   }
