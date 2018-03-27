@@ -18,7 +18,7 @@ public class Response {
 
   /**
    * Response status.
-   * only "ok" or "fail"
+   * use ResponseStatusType
    */
   private String status;
 
