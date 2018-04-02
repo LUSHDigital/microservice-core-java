@@ -18,41 +18,42 @@ public class DateUtil {
   /**
    * Get Now local year(only year)
    */
-  public int getNowYear() {
-    int nowYear = LocalDate.now().getYear();
-    return nowYear;
+  public Integer getNowYear() {
+    return LocalDate.now().getYear();
   }
 
   /**
    * Get Now local month(only month)
    */
-  public int getNowMonth() {
-    int nowMonth = LocalDate.now().getMonthValue();
-    return nowMonth;
+  public Integer getNowMonth() {
+    return LocalDate.now().getMonthValue();
   }
 
   /**
    * Get Now local date(only date)
    */
   public LocalDate getNowDate() {
-    LocalDate nowDate = LocalDate.now();
-    return nowDate;
+    return LocalDate.now();
   }
 
   /**
    * Get Now local time(year, monthm, date, time)
    */
   public LocalDateTime getNowTime() {
-    LocalDateTime nowTime = LocalDateTime.now();
-    return nowTime;
+    return LocalDateTime.now();
   }
 
   /**
    * Get Now local time only(only time)
    */
   public LocalTime getOnlyNowTime() {
-    LocalTime nowOnlyNowTime = LocalTime.now();
-    return nowOnlyNowTime;
+    return LocalTime.now();
   }
 
+  /**
+   * Get Now local time without nanosecond.
+   */
+  public LocalTime getDateTimeWithoutNanosec() {
+    return LocalTime.now().withNano(0);
+  }
 }
