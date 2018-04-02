@@ -43,7 +43,7 @@ public class DateUtil {
     return LocalDateTime.now();
   }
 
-  /**
+  /**;
    * Get Now local time only(only time)
    */
   public LocalTime getOnlyNowTime() {
@@ -53,7 +53,7 @@ public class DateUtil {
   /**
    * Get Now local time without nanosecond.
    */
-  public LocalTime getDateTimeWithoutNanosec() {
-    return LocalTime.now().withNano(0);
+  public LocalDateTime getDateTimeWithoutNanosec() {
+    return LocalDateTime.now().withNano(0);
   }
 }
