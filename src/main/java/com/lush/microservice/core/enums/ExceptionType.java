@@ -22,7 +22,12 @@ public enum ExceptionType {
   /**
    * Don't allow File type Exception
    */
-  FILE_TYPE_EXCEPTION(415, "don't allow File type");
+  FILE_TYPE_EXCEPTION(415, "don't allow File type"),
+
+  /**
+   * File upload Failed Exception
+   */
+  FILE_UPLOAD_FAILED_EXCEPTION(502, "file upload failed.");
 
   /**
    * Exception Code
