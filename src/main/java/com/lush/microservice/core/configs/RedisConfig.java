@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig {
@@ -24,11 +25,16 @@ public class RedisConfig {
 
   /**
    * Create a JedisConnectionFactory to set the host, port, and pool for the redis.
+   *
    * @return JedisConnectionFactory
    */
   @Bean
   public JedisConnectionFactory jedisConnectionFactory() {
-    return new JedisConnectionFactory();
+    JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
+    jedisConnectionFactory.setHostName(redisHost);
+    jedisConnectionFactory.setPort(redisPort);
+    jedisConnectionFactory.setUsePool(true);
+    return jedisConnectionFactory;
   }
 
   /**
@@ -37,10 +43,11 @@ public class RedisConfig {
    * @return RedisTemplate
    */
   @Bean
-  public RedisTemplate<String, Object> redisTemplate() {
+  public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
     RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
-    redisTemplate.setConnectionFactory(jedisConnectionFactory());
-    redisTemplate.setValueSerializer(new GenericToStringSerializer<>(Object.class));
+    redisTemplate.setKeySerializer(new StringRedisSerializer());
+    redisTemplate.setValueSerializer(new StringRedisSerializer());
+    redisTemplate.setConnectionFactory(jedisConnectionFactory);
     return redisTemplate;
   }
 }
