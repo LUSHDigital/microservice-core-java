@@ -12,7 +12,7 @@ public enum ExceptionType {
   /**
    * Not Found Data Exception
    */
-  NOT_FOUND_DATA(204, "no data found"),
+  NOT_FOUND_DATA(404, "no data found"),
 
   /**
    * Duplicated Data Exception
