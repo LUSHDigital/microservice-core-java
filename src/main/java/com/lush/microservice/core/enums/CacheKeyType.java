@@ -6,5 +6,5 @@ package com.lush.microservice.core.enums;
  * @author IS
  */
 public enum CacheKeyType {
-  PARENT, CHILD, SELF, LIST
+  PARENT, CHILD, SELF, LIST, CHILD_LIST
 }

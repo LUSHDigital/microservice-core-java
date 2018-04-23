@@ -128,8 +128,9 @@ public class CacheUtil {
    */
   public Cache setCache(CacheKeyType cacheKeyType, String[] keys, String[] hashKeys) {
 
-    // If the cache type is a list or child, create a cache key by combining the cache type and keys.
-    if (cacheKeyType == CacheKeyType.CHILD || cacheKeyType == CacheKeyType.LIST) {
+    // If the cache type is a list or child or child list, create a cache key by combining the cache type and keys.
+    if (cacheKeyType == CacheKeyType.CHILD || cacheKeyType == CacheKeyType.LIST
+        || cacheKeyType == CacheKeyType.CHILD_LIST) {
       cache.setKey(this.generateKeyByKeys(cacheKeyType, keys));
     } else {
       cache.setKey(this.generateKeyByKeys(cacheKeyType));
