@@ -33,7 +33,12 @@ public enum ExceptionType {
   /**
    * File upload Failed Exception
    */
-  FILE_UPLOAD_FAILED_EXCEPTION(502, "file upload failed.");
+  FILE_UPLOAD_FAILED_EXCEPTION(502, "file upload failed."),
+
+  /**
+   * Not Found File Exception
+   */
+  NOT_FOUND_FILE(404, "no data file");
 
   /**
    * Exception Code

@@ -5,6 +5,7 @@ import com.lush.microservice.core.models.Cache;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -69,15 +70,6 @@ public class CacheUtil {
   }
 
   /**
-   * Remove a redis cache key.
-   *
-   * @param cache
-   */
-  public void removeRedisCacheData(Cache cache) {
-    hashOps.delete(cache.getKey(), cache.getHashKey());
-  }
-
-  /**
    * Generate a hash cache key.
    *
    * @return String
@@ -114,31 +106,56 @@ public class CacheUtil {
     for (String key : keys) {
       cacheKey += SEPARATOR + key;
     }
-
     return cacheKey;
   }
 
   /**
-   * Set a cache.
+   * Set a cache(For internal use.).
    *
    * @param cacheKeyType
    * @param keys
    * @param hashKeys
    * @return Cache
    */
-  public Cache setCache(CacheKeyType cacheKeyType, String[] keys, String[] hashKeys) {
+  private Cache setCache(CacheKeyType cacheKeyType, String[] keys, String[] hashKeys) {
 
     // If the cache type is a list or child or child list, create a cache key by combining the cache type and keys.
     if (cacheKeyType == CacheKeyType.CHILD || cacheKeyType == CacheKeyType.LIST
         || cacheKeyType == CacheKeyType.CHILD_LIST) {
       cache.setKey(this.generateKeyByKeys(cacheKeyType, keys));
     } else {
+      // PARENT, SELF
       cache.setKey(this.generateKeyByKeys(cacheKeyType));
     }
 
     cache.setHashKey(this.generateHashKeyByKeys(hashKeys));
 
     return cache;
+  }
+
+  /**
+   * Set list cache (Use call from service.).
+   *
+   * @param key
+   * @param page
+   * @return Cache
+   */
+  public Cache setListCache(String[] key, Pageable page) {
+    String[] hashKeys = {page.getSort().toString(),
+        Integer.toString(page.getPageNumber()), Integer.toString(page.getPageSize())};
+
+    return this.setCache(CacheKeyType.LIST, key, hashKeys);
+  }
+
+  /**
+   * Set a cache (Use call from service.).
+   *
+   * @param cacheKeyType
+   * @param keys
+   * @return Cache
+   */
+  public Cache setCache(CacheKeyType cacheKeyType, String[] keys) {
+    return this.setCache(cacheKeyType, keys, keys);
   }
 
   /**
@@ -154,5 +171,94 @@ public class CacheUtil {
     for (String key : allRedisCacheData.keySet()) {
       hashOps.delete(cacheKey, key.toString());
     }
+  }
+
+  /**
+   * Remove a redis cache key.
+   *
+   * @param cache
+   */
+  private void removeRedisCacheData(Cache cache) {
+    hashOps.delete(cache.getKey(), cache.getHashKey());
+  }
+
+  /**
+   * Remove list cache by keys.
+   *
+   * @param keys
+   */
+  public void removeListCacheData(String[] keys) {
+    this.removeAllRedisCacheData(CacheKeyType.LIST, keys);
+  }
+
+  /**
+   * Remove list cache by key.
+   *
+   * @param key
+   */
+  public void removeListCacheData(String key) {
+    String[] keys = {key};
+    this.removeAllRedisCacheData(CacheKeyType.LIST, keys);
+  }
+
+  /**
+   * Remove child list cache by keys.
+   *
+   * @param keys
+   */
+  public void removeChildListCacheData(String[] keys) {
+    this.removeAllRedisCacheData(CacheKeyType.CHILD_LIST, keys);
+  }
+
+  /**
+   * Remove child list cache by key.
+   *
+   * @param key
+   */
+  public void removeChildListCacheData(String key) {
+    String[] keys = {key};
+    this.removeAllRedisCacheData(CacheKeyType.CHILD_LIST, keys);
+  }
+
+  /**
+   * Remove parent cache by keys.
+   *
+   * @param keys
+   */
+  public void removeParentCacheData(String[] keys) {
+    cache = this.setCache(CacheKeyType.PARENT, keys);
+    this.removeRedisCacheData(cache);
+  }
+
+  /**
+   * Remove parent cache by key.
+   *
+   * @param key
+   */
+  public void removeParentCacheData(String key) {
+    String[] keys = {key};
+    cache = this.setCache(CacheKeyType.PARENT, keys);
+    this.removeRedisCacheData(cache);
+  }
+
+  /**
+   * Remove child cache by keys.
+   *
+   * @param keys
+   */
+  public void removeChildCacheData(String[] keys) {
+    cache = this.setCache(CacheKeyType.CHILD, keys);
+    this.removeRedisCacheData(cache);
+  }
+
+  /**
+   * Remove child cache by key.
+   *
+   * @param key
+   */
+  public void removeChildCacheData(String key) {
+    String[] keys = {key};
+    cache = this.setCache(CacheKeyType.CHILD, keys);
+    this.removeRedisCacheData(cache);
   }
 }
