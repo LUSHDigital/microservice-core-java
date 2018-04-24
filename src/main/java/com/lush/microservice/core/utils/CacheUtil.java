@@ -134,7 +134,7 @@ public class CacheUtil {
   }
 
   /**
-   * Set list cache by keys(Use call from service.).
+   * Set list cache by keys, page(Use call from service.).
    *
    * @param keys
    * @param page
@@ -148,7 +148,7 @@ public class CacheUtil {
   }
 
   /**
-   * Set list cache by key(Use call from service.).
+   * Set list cache by key, page(Use call from service.).
    *
    * @param key
    * @param page
@@ -156,6 +156,17 @@ public class CacheUtil {
    */
   public Cache setListCache(String key, Pageable page) {
     String[] keys = {key};
+    return this.setListCache(keys, page);
+  }
+
+  /**
+   * Set list cache by page(Use call from service.).
+   *
+   * @param page
+   * @return Cache
+   */
+  public Cache setListCache(Pageable page) {
+    String[] keys = {};
     return this.setListCache(keys, page);
   }
 
@@ -242,6 +253,27 @@ public class CacheUtil {
   public void removeChildListCacheData(String key) {
     String[] keys = {key};
     this.removeAllRedisCacheData(CacheKeyType.CHILD_LIST, keys);
+  }
+
+  /**
+   * Remove self cache by keys.
+   *
+   * @param keys
+   */
+  public void removeSelfCacheData(String[] keys) {
+    cache = this.setCache(CacheKeyType.SELF, keys);
+    this.removeRedisCacheData(cache);
+  }
+
+  /**
+   * Remove self cache by key.
+   *
+   * @param key
+   */
+  public void removeSelfCacheData(String key) {
+    String[] keys = {key};
+    cache = this.setCache(CacheKeyType.SELF, keys);
+    this.removeRedisCacheData(cache);
   }
 
   /**
