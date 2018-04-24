@@ -45,4 +45,19 @@ public class HttpUtil {
 
     return new ResponseEntity<>(response, getResponseHeaders(), HttpStatus.UNPROCESSABLE_ENTITY);
   }
+
+  /**
+   * Method name : responseValidation.
+   * Description : Request Data Validation Check to Response (User Message).
+   *
+   * @return ResponseEntity
+   */
+  public ResponseEntity<Object> responseValidation(BindingResult result, String message)
+      throws Exception {
+    Response response =
+        new Response(ResponseStatusType.FAIL,
+            HttpStatus.UNPROCESSABLE_ENTITY.value(), message);
+
+    return new ResponseEntity<>(response, getResponseHeaders(), HttpStatus.UNPROCESSABLE_ENTITY);
+  }
 }
