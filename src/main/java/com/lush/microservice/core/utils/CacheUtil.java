@@ -134,27 +134,51 @@ public class CacheUtil {
   }
 
   /**
-   * Set list cache (Use call from service.).
+   * Set list cache by keys(Use call from service.).
    *
-   * @param key
+   * @param keys
    * @param page
    * @return Cache
    */
-  public Cache setListCache(String[] key, Pageable page) {
+  public Cache setListCache(String[] keys, Pageable page) {
     String[] hashKeys = {page.getSort().toString(),
         Integer.toString(page.getPageNumber()), Integer.toString(page.getPageSize())};
 
-    return this.setCache(CacheKeyType.LIST, key, hashKeys);
+    return this.setCache(CacheKeyType.LIST, keys, hashKeys);
   }
 
   /**
-   * Set a cache (Use call from service.).
+   * Set list cache by key(Use call from service.).
+   *
+   * @param key
+   * @param page
+   * @return
+   */
+  public Cache setListCache(String key, Pageable page) {
+    String[] keys = {key};
+    return this.setListCache(keys, page);
+  }
+
+  /**
+   * Set a cache by keys(Use call from service.).
    *
    * @param cacheKeyType
    * @param keys
    * @return Cache
    */
   public Cache setCache(CacheKeyType cacheKeyType, String[] keys) {
+    return this.setCache(cacheKeyType, keys, keys);
+  }
+
+  /**
+   * Set a cache by key(Use call from service.).
+   *
+   * @param cacheKeyType
+   * @param key
+   * @return
+   */
+  public Cache setCache(CacheKeyType cacheKeyType, String key) {
+    String[] keys = {key};
     return this.setCache(cacheKeyType, keys, keys);
   }
 
