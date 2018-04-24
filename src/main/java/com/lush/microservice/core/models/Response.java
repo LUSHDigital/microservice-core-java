@@ -1,7 +1,6 @@
 package com.lush.microservice.core.models;
 
 import com.lush.microservice.core.enums.ResponseStatusType;
-import com.lush.microservice.core.enums.ResponseStatusType;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -39,9 +38,14 @@ public class Response {
   private Object data;
 
   /**
+   * Response Pagination Info.
+   */
+  private PaginationDto pagination;
+
+  /**
    * Default constructor.
    */
-  public Response () {
+  public Response() {
     this.status = ResponseStatusType.OK;
     this.code = HttpStatus.OK.value();
     this.message = "success";
@@ -104,7 +108,7 @@ public class Response {
   public void setCode(Integer code) {
     this.code = code;
   }
-  
+
   /**
    * Get message
    */
@@ -131,5 +135,19 @@ public class Response {
    */
   public void setData(Object data) {
     this.data = data;
+  }
+
+  /**
+   * Get Pagination Data
+   */
+  public PaginationDto getPagination() {
+    return pagination;
+  }
+
+  /**
+   * Set Pagination Data
+   */
+  public void setPagination(PaginationDto pagination) {
+    this.pagination = pagination;
   }
 }
