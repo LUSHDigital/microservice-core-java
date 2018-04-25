@@ -90,7 +90,7 @@ public class CacheUtil {
    *
    * @return String
    */
-  public String generateKeyByKeys(CacheKeyType cacheKeyType) {
+  private String generateKeyByKeys(CacheKeyType cacheKeyType) {
     return appName + SEPARATOR + cacheKeyType;
   }
 
@@ -99,7 +99,7 @@ public class CacheUtil {
    *
    * @return String
    */
-  public String generateKeyByKeys(CacheKeyType cacheKeyType, String[] keys) {
+  private String generateKeyByKeys(CacheKeyType cacheKeyType, String[] keys) {
     String cacheKey = appName + SEPARATOR + cacheKeyType;
 
     // Combine cache key type and keys to make a cache key.
@@ -199,7 +199,7 @@ public class CacheUtil {
    * @param cacheKeyType
    * @param keys
    */
-  public void removeAllRedisCacheData(CacheKeyType cacheKeyType, String[] keys) {
+  private void removeAllRedisCacheData(CacheKeyType cacheKeyType, String[] keys) {
     String cacheKey = this.generateKeyByKeys(cacheKeyType, keys);
     Map<String, Object> allRedisCacheData = hashOps.entries(cacheKey);
 
@@ -233,6 +233,14 @@ public class CacheUtil {
    */
   public void removeListCacheData(String key) {
     String[] keys = {key};
+    this.removeAllRedisCacheData(CacheKeyType.LIST, keys);
+  }
+
+  /**
+   * Remove list cache by key.
+   */
+  public void removeListCacheData() {
+    String[] keys = {};
     this.removeAllRedisCacheData(CacheKeyType.LIST, keys);
   }
 
