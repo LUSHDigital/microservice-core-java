@@ -27,15 +27,17 @@ public class PaginationUtil {
     paginationDto.setCurrent_page(currentPage);
     paginationDto.setLast_page(lastPages);
 
-    if (currentPage + 1 <= lastPages) {
-      currentPage = currentPage + 1;
+    int nextPage = currentPage;
+    if (nextPage < lastPages) {
+      nextPage = nextPage + 1;
     }
-    paginationDto.setNext_page(currentPage);
+    paginationDto.setNext_page(nextPage);
 
-    if (currentPage - 1 >= 0) {
-      currentPage = currentPage - 1;
+    int prevPage = currentPage;
+    if (prevPage > 0) {
+      prevPage = prevPage - 1;
     }
-    paginationDto.setPrev_page(currentPage);
+    paginationDto.setPrev_page(prevPage);
 
     return paginationDto;
   }
