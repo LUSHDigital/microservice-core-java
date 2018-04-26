@@ -19,8 +19,8 @@ public class PaginationUtil {
 
     long totalCount = page.getTotalElements();
     int perSize = page.getSize();
-    int currentPage = page.getPageable().getPageNumber();
-    int lastPages = page.getTotalPages() - 1;
+    int currentPage = page.getPageable().getPageNumber() + 1;
+    int lastPages = page.getTotalPages();
 
     paginationDto.setTotal(totalCount);
     paginationDto.setPer_page(perSize);
