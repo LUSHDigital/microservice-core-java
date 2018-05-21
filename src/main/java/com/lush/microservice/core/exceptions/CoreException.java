@@ -6,12 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
- * Core Exception(Common)
- * When exceptions occur, receive exception information.
- * (The controller will return it to the response)
- *
- * @author Jelly
- * @author Is
+ * Core Exception(Common) When exceptions occur, receive exception information. (The controller will
+ * return it to the response)
  */
 @Component
 public class CoreException extends RuntimeException {
@@ -46,12 +42,20 @@ public class CoreException extends RuntimeException {
   }
 
   /**
-   * The default creator. (User Created)
+   * The default creator. (User create message)
    *
-   * @param code
    * @param handlerMessage
    */
-  public CoreException(Integer code, String handlerMessage) {
+  public CoreException(String handlerMessage) {
+    this.status = ResponseStatusType.FAIL;
+    this.code = 500;
+    this.message = handlerMessage;
+  }
+
+  /**
+   * The default creator. (User Created)
+   */
+  private CoreException(Integer code, String handlerMessage) {
     this.status = ResponseStatusType.FAIL;
     this.code = code;
     this.message = handlerMessage;
@@ -60,11 +64,11 @@ public class CoreException extends RuntimeException {
   /**
    * Set common exception.
    *
-   * @param exceptionType
    * @return CoreException
    */
   public CoreException setCommonExceptoin(ExceptionType exceptionType) {
-    CoreException coreException = new CoreException(exceptionType.getCode(), exceptionType.getMassage());
+    CoreException coreException = new CoreException(exceptionType.getCode(),
+        exceptionType.getMassage());
     return coreException;
   }
 

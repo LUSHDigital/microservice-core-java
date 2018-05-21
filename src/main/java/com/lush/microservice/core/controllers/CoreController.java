@@ -31,8 +31,6 @@ import org.springframework.web.client.RestTemplate;
  *
  * Class that receives health check for services and endpoint information requests.
  *
- * @author Is
- * @author Jelly
  */
 @ControllerAdvice
 @RestController

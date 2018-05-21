@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * Intercepter Controller.
  *
- * @author With
  */
 @ControllerAdvice
 @RestController

@@ -1,39 +1,40 @@
 package com.lush.microservice.core.enums;
 
 /**
- * Exception Handler
+ * Exception handler
  * Manage exception messages in common.
- *
- * @author Jelly
- * @author Is
  */
 public enum ExceptionType {
 
   /**
-   * Not Found Data Exception
+   * Not found data exception.
    */
   NOT_FOUND_DATA(404, "no data found"),
 
   /**
-   * Not Found File Exception
+   * Not found file exception.
    */
   NOT_FOUND_FILE(404, "no file found"),
 
-
   /**
-   * Duplicated Data Exception
+   * Duplicated data exception.
    */
   DUPLICATED_DATA(412, "already duplicated data"),
 
   /**
-   * Don't allow File type Exception
+   * Don't allow file type exception.
    */
   FILE_TYPE_EXCEPTION(415, "don't allow File type"),
 
   /**
-   * File upload Failed Exception
+   * File upload failed exception.
    */
-  FILE_UPLOAD_FAILED_EXCEPTION(502, "file upload failed.");
+  FILE_UPLOAD_FAILED_EXCEPTION(502, "file upload failed."),
+
+  /**
+   * Invalid ID value exception.
+   */
+  INVALID_ID_VALUE(412, "ID must be greater than 0.");
 
   /**
    * Exception Code
