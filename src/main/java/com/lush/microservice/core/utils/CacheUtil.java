@@ -110,7 +110,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setChildListCache(String[] keys) {
-    return this.setCache(CacheKeyType.CHILD_LIST, keys, new String[]{});
+    return this.setCache(CacheKeyType.CHILD_LIST, keys);
   }
 
   /**
@@ -120,7 +120,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setChildListCache(String key) {
-    return this.setCache(CacheKeyType.CHILD_LIST, new String[]{key}, new String[]{});
+    return this.setCache(CacheKeyType.CHILD_LIST, new String[]{key});
   }
 
   /**
@@ -130,7 +130,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setSelfCache(String[] keys) {
-    return this.setCache(CacheKeyType.SELF, keys, new String[]{});
+    return this.setCache(CacheKeyType.SELF, keys);
   }
 
   /**
@@ -140,7 +140,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setSelfCache(String key) {
-    return this.setCache(CacheKeyType.SELF, new String[]{key}, new String[]{});
+    return this.setCache(CacheKeyType.SELF, new String[]{key});
   }
 
   /**
@@ -150,7 +150,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setParentCache(String[] keys) {
-    return this.setCache(CacheKeyType.PARENT, keys, new String[]{});
+    return this.setCache(CacheKeyType.PARENT, keys);
   }
 
   /**
@@ -160,7 +160,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setParentCache(String key) {
-    return this.setCache(CacheKeyType.PARENT, new String[]{key}, new String[]{});
+    return this.setCache(CacheKeyType.PARENT, new String[]{key});
   }
 
   /**
@@ -170,7 +170,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setChild(String[] keys) {
-    return this.setCache(CacheKeyType.CHILD, keys, new String[]{});
+    return this.setCache(CacheKeyType.CHILD, keys);
   }
 
   /**
@@ -180,7 +180,7 @@ public class CacheUtil {
    * @return Cache
    */
   public Cache setChild(String key) {
-    return this.setCache(CacheKeyType.CHILD, new String[]{key}, new String[]{});
+    return this.setCache(CacheKeyType.CHILD, new String[]{key});
   }
 
   /***************************************************
@@ -221,7 +221,7 @@ public class CacheUtil {
     Map<String, Object> allRedisCacheData = hashOps.entries(cacheKey);
 
     for (String key : allRedisCacheData.keySet()) {
-      hashOps.delete(cacheKey, key.toString());
+      hashOps.delete(cacheKey, key);
     }
   }
 

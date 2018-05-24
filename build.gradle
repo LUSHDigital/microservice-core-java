@@ -20,6 +20,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: "${springBootVersion}"
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: "${springBootVersion}"
+    compile group: 'org.springframework.data', name: 'spring-data-redis', version: "${springBootVersion}"
     compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
     compile group: 'io.springfox', name: 'springfox-swagger2', version: "${springFoxVersion}"
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: "${springFoxVersion}"
