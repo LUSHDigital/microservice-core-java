@@ -22,6 +22,10 @@ public class PaginationUtil {
     int currentPage = page.getPageable().getPageNumber() + 1;
     int lastPages = page.getTotalPages();
 
+    if (totalCount == 0) {
+      currentPage = 0;
+    }
+
     paginationDto.setTotal(totalCount);
     paginationDto.setPer_page(perSize);
     paginationDto.setCurrent_page(currentPage);
