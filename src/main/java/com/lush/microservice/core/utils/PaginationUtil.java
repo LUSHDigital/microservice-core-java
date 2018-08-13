@@ -15,6 +15,7 @@ public class PaginationUtil {
    *
    * @param page
    * @return
+   * @throws Exception
    */
   public static PaginationDto setPaginationInfo(Page page) throws Exception {
     PaginationDto paginationDto = new PaginationDto();
