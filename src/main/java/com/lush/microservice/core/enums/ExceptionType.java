@@ -17,6 +17,11 @@ public enum ExceptionType {
   NOT_FOUND_FILE(404, "no file found"),
 
   /**
+   * Not found data exception.
+   */
+  NOT_FOUND_PAGENATION(404, "no page information found"),
+
+  /**
    * Duplicated data exception.
    */
   DUPLICATED_DATA(412, "already duplicated data"),

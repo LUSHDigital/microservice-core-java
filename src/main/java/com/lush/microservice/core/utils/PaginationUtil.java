@@ -1,5 +1,7 @@
 package com.lush.microservice.core.utils;
 
+import com.lush.microservice.core.enums.ExceptionType;
+import com.lush.microservice.core.exceptions.CoreException;
 import com.lush.microservice.core.models.PaginationDto;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
@@ -14,7 +16,7 @@ public class PaginationUtil {
    * @param page
    * @return
    */
-  public static PaginationDto setPaginationInfo(Page page) {
+  public static PaginationDto setPaginationInfo(Page page) throws Exception {
     PaginationDto paginationDto = new PaginationDto();
 
     long totalCount = page.getTotalElements();
@@ -42,6 +44,10 @@ public class PaginationUtil {
       prevPage = prevPage - 1;
     }
     paginationDto.setPrev_page(prevPage);
+
+    if (currentPage > lastPages) {
+      throw new CoreException().setCommonExceptoin(ExceptionType.NOT_FOUND_PAGENATION);
+    }
 
     return paginationDto;
   }
