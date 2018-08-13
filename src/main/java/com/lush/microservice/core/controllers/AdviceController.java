@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * AdviceController
- *
  * Intercepter Controller.
  */
 @ControllerAdvice
@@ -42,8 +41,7 @@ public class AdviceController {
    */
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(Exception.class)
-  public void handleBadRequest() {
-    System.out.println("나쁜 요청이네요.");
+  public Response handleBadRequest() {
     throw new CoreException().setCommonExceptoin(ExceptionType.BAD_REQEUST);
   }
 }
