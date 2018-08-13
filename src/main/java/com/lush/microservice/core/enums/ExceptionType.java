@@ -7,6 +7,10 @@ package com.lush.microservice.core.enums;
 public enum ExceptionType {
 
   /**
+   * Bad Request exception.
+   */
+  BAD_REQEUST(400, "bad request"),
+  /**
    * Not found data exception.
    */
   NOT_FOUND_DATA(404, "no data found"),
@@ -17,7 +21,7 @@ public enum ExceptionType {
   NOT_FOUND_FILE(404, "no file found"),
 
   /**
-   * Not found data exception.
+   * Not found page exception.
    */
   NOT_FOUND_PAGENATION(404, "no page information found"),
 
