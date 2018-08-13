@@ -1,6 +1,6 @@
 package com.lush.microservice.core.controllers;
 
-import com.lush.microservice.core.enums.ExceptionType;
+import com.lush.microservice.core.enums.ResponseStatusType;
 import com.lush.microservice.core.exceptions.CoreException;
 import com.lush.microservice.core.models.Response;
 import org.springframework.core.Ordered;
@@ -42,6 +42,10 @@ public class AdviceController {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(Exception.class)
   public Response handleBadRequest() {
-    throw new CoreException().setCommonExceptoin(ExceptionType.BAD_REQEUST);
+    Response response = new Response();
+    response.setStatus(ResponseStatusType.FAIL);
+    response.setCode(400);
+    response.setMessage("bad request");
+    return response;
   }
 }
