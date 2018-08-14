@@ -43,7 +43,12 @@ public enum ExceptionType {
   /**
    * Invalid ID value exception.
    */
-  INVALID_ID_VALUE(412, "ID must be greater than 0.");
+  INVALID_ID_VALUE(412, "ID must be greater than 0."),
+
+  /**
+   * Invalid ID selection exception.
+   */
+  IINVALID_ID_SELECTION(412, "You can't select your own ID.");
 
   /**
    * Exception Code
