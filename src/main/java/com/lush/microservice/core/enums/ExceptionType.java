@@ -48,7 +48,7 @@ public enum ExceptionType {
   /**
    * Invalid ID selection exception.
    */
-  IINVALID_ID_SELECTION(412, "You can't select your own ID.");
+  INVALID_ID_SELECTION(412, "You can't select your own ID.");
 
   /**
    * Exception Code
