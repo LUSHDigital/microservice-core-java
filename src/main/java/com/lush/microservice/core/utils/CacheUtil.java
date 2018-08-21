@@ -1,12 +1,16 @@
 package com.lush.microservice.core.utils;
 
 import com.lush.microservice.core.enums.CacheKeyType;
+import com.lush.microservice.core.exceptions.CoreException;
 import com.lush.microservice.core.models.Cache;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +48,12 @@ public class CacheUtil {
   @Autowired
   public CacheUtil(RedisTemplate<String, Object> redisTemplate) {
     this.hashOps = redisTemplate.opsForHash();
+    this.redisTemplate = redisTemplate;
+
   }
+
+  // add test line
+  private RedisTemplate<String, Object> redisTemplate;
 
   /***************************************************
    * SET CACHE KEY
@@ -77,7 +86,7 @@ public class CacheUtil {
    */
   public Cache setListCache(String[] keys, Pageable page) {
     String[] hashKeys = {page.getSort().toString(),
-      Integer.toString(page.getPageNumber()), Integer.toString(page.getPageSize())};
+        Integer.toString(page.getPageNumber()), Integer.toString(page.getPageSize())};
 
     return this.setCache(CacheKeyType.LIST, keys, hashKeys);
   }
@@ -209,6 +218,25 @@ public class CacheUtil {
   /***************************************************
    * REMOVE CACHE
    ***************************************************/
+
+  /**
+   * Remove all redis cache data(No parameter).
+   *
+   * @throws Exception
+   */
+  public void removeAllCacheData() {
+    try {
+      redisTemplate.execute(new RedisCallback() {
+        @Override
+        public Object doInRedis(RedisConnection connection) throws DataAccessException {
+          connection.flushAll();
+          return null;
+        }
+      });
+    } catch (Exception e) {
+      throw new CoreException(e.getMessage());
+    }
+  }
 
   /**
    * Remove all redis cache data.
@@ -354,7 +382,7 @@ public class CacheUtil {
 
     // If the cache type is a list or child or child list, create a cache key by combining the cache type and keys.
     if (cacheKeyType == CacheKeyType.CHILD || cacheKeyType == CacheKeyType.LIST
-      || cacheKeyType == CacheKeyType.CHILD_LIST) {
+        || cacheKeyType == CacheKeyType.CHILD_LIST) {
       cache.setKey(this.generateKeyByKeys(cacheKeyType, keys));
     } else {
       // PARENT, SELF
