@@ -1,6 +1,7 @@
 package com.lush.microservice.core.utils;
 
 import com.lush.microservice.core.enums.ResponseStatusType;
+import com.lush.microservice.core.exceptions.CoreException;
 import com.lush.microservice.core.models.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -59,5 +60,21 @@ public class HttpUtil {
             HttpStatus.UNPROCESSABLE_ENTITY.value(), message);
 
     return new ResponseEntity<>(response, getResponseHeaders(), HttpStatus.UNPROCESSABLE_ENTITY);
+  }
+
+  /**
+   * Method name : responseException.
+   * Description : Request Data Exception to Response.
+   *
+   * @param coreException
+   * @return ResponseEntity
+   */
+  public ResponseEntity<Object> responseException(CoreException coreException) throws Exception {
+
+    Response response = new Response(ResponseStatusType.FAIL, coreException.getCode(),
+        coreException.getMessage());
+
+    return new ResponseEntity<>(response, getResponseHeaders(),
+        HttpStatus.valueOf(coreException.getCode()));
   }
 }
