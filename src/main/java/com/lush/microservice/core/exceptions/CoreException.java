@@ -42,6 +42,17 @@ public class CoreException extends RuntimeException {
   }
 
   /**
+   * The default creator. (User create message)
+   *
+   * @param handlerMessage
+   */
+  public CoreException(String handlerMessage) {
+    this.status = ResponseStatusType.FAIL;
+    this.code = 500;
+    this.message = handlerMessage;
+  }
+
+  /**
    * The default creator. (User Created)
    */
   public CoreException(Integer code, String handlerMessage) {
