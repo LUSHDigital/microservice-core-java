@@ -69,7 +69,7 @@ public class HttpUtil {
    * @param coreException
    * @return ResponseEntity
    */
-  public ResponseEntity<Object> responseException(CoreException coreException) {
+  public ResponseEntity<Object> responseException(CoreException coreException) throws Exception {
 
     Response response = new Response(ResponseStatusType.FAIL, coreException.getCode(),
         coreException.getMessage());

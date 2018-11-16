@@ -2,9 +2,7 @@ package com.lush.microservice.core.exceptions;
 
 import com.lush.microservice.core.enums.ExceptionType;
 import com.lush.microservice.core.enums.ResponseStatusType;
-import com.lush.microservice.core.utils.HttpUtil;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 /**
@@ -68,12 +66,11 @@ public class CoreException extends RuntimeException {
    *
    * @return CoreException
    */
-  public ResponseEntity<Object> setCommonExceptoin(ExceptionType exceptionType) {
+  public CoreException setCommonExceptoin(ExceptionType exceptionType) {
     CoreException coreException = new CoreException(exceptionType.getCode(),
         exceptionType.getMassage());
 
-    HttpUtil httpUtil = new HttpUtil();
-    return httpUtil.responseException(coreException);
+    return coreException;
   }
 
   /**

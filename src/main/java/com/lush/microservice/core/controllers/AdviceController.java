@@ -3,9 +3,11 @@ package com.lush.microservice.core.controllers;
 import com.lush.microservice.core.enums.ResponseStatusType;
 import com.lush.microservice.core.exceptions.CoreException;
 import com.lush.microservice.core.models.Response;
+import com.lush.microservice.core.utils.HttpUtil;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -27,12 +29,16 @@ public class AdviceController {
    * @return Response
    */
   @ExceptionHandler(CoreException.class)
-  public Response handlerCoreException(CoreException e) {
+  public ResponseEntity<Object> handlerCoreException(CoreException e) throws Exception {
     Response response = new Response();
     response.setStatus(e.getStatus());
     response.setCode(e.getCode());
     response.setMessage(e.getMessage());
-    return response;
+
+    HttpUtil httpUtil = new HttpUtil();
+    return httpUtil.responseException(e);
+
+//    return response;
   }
 
   /**
@@ -48,4 +54,5 @@ public class AdviceController {
     response.setMessage("bad request");
     return response;
   }
+
 }

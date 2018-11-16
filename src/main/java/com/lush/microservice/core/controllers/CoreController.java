@@ -211,18 +211,4 @@ public class CoreController {
     return new ResponseEntity(serviceInfo, httpUtil.getResponseHeaders(), HttpStatus.OK);
   }
 
-  /**
-   * Method name : handlerCoreException.
-   * Description : Core Exception Handler.
-   *
-   * @return Response
-   */
-  @ExceptionHandler(CoreException.class)
-  public Response handlerCoreException(CoreException e) {
-    Response response = new Response();
-    response.setStatus(e.getStatus());
-    response.setCode(e.getCode());
-    response.setMessage(e.getMessage());
-    return response;
-  }
 }
