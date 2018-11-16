@@ -2,7 +2,6 @@ package com.lush.microservice.core.exceptions;
 
 import com.lush.microservice.core.enums.ExceptionType;
 import com.lush.microservice.core.enums.ResponseStatusType;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 /**
@@ -33,29 +32,9 @@ public class CoreException extends RuntimeException {
   private final String message;
 
   /**
-   * The default creator. (using default code and message)
-   */
-  public CoreException() {
-    this.status = ResponseStatusType.FAIL;
-    this.code = HttpStatus.INTERNAL_SERVER_ERROR.value();
-    this.message = "Internal server exception";
-  }
-
-  /**
-   * The default creator. (User create message)
-   *
-   * @param handlerMessage
-   */
-  public CoreException(String handlerMessage) {
-    this.status = ResponseStatusType.FAIL;
-    this.code = 500;
-    this.message = handlerMessage;
-  }
-
-  /**
    * The default creator. (User Created)
    */
-  private CoreException(Integer code, String handlerMessage) {
+  public CoreException(Integer code, String handlerMessage) {
     this.status = ResponseStatusType.FAIL;
     this.code = code;
     this.message = handlerMessage;

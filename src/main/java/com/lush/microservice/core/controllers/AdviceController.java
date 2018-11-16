@@ -38,7 +38,6 @@ public class AdviceController {
     HttpUtil httpUtil = new HttpUtil();
     return httpUtil.responseException(e);
 
-//    return response;
   }
 
   /**
